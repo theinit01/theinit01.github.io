@@ -1,4 +1,4 @@
-baseURL = "https://yourdomain.com/"
+baseURL = "https://theinit01.github.io/blog/"
 languageCode = "en-us"
 title = "theinit01's blog"
 theme = "github-style"
@@ -12,9 +12,10 @@ pygmentsUseClasses = true
   linkedin = "theinit01"
   email = "tushar3145@gmail.com"
   enableGitalk = true
+  url = "https://theinit01.github.io/blog/"
   avatar = "https://avatars.githubusercontent.com/u/75197616?v=4"
   favicon = "https://www.google.com/s2/favicons?sz=64&domain=github.com"
-  headerIcon = "/images/github-mark-white.png"
+  headerIcon = "/images/github-mark.png"
   keywords = "blog, google analytics"
   lastmod = true
   userStatusEmoji = "💻"
@@ -35,10 +36,14 @@ pygmentsUseClasses = true
     createIssueManually = true                  # Manually create issues if OAuth does not create them
     distractionFreeMode = false                 # Hide the sidebar and footer for comments
   
-  [[params.links]]
-    title = "Link"
-    href = "https://github.com/theinit01"
+[outputs]
+  home = ["html", "json"]
 
+[outputFormats.json]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = false
+  
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
 
