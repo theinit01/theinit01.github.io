@@ -1,0 +1,48 @@
+baseURL = "https://yourdomain.com/"
+languageCode = "en-us"
+title = "theinit01's blog"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "Tushar Singh"
+  description = "Welcome to my blog!"
+  github = "theinit01"
+  linkedin = "theinit01"
+  email = "tushar3145@gmail.com"
+  enableGitalk = true
+  avatar = "https://avatars.githubusercontent.com/u/75197616?v=4"
+  favicon = "https://www.google.com/s2/favicons?sz=64&domain=github.com"
+  headerIcon = "/images/github-mark-white.png"
+  keywords = "blog, google analytics"
+  lastmod = true
+  userStatusEmoji = "💻"
+  location = "India"
+  enableSearch = true
+
+  # Gitalk configuration for enabling comments
+  [params.gitalk]
+    clientID = "Ov23liJvwokmBm4lSWRL"          # Replace with your GitHub OAuth Client ID
+    clientSecret = "7edf02feed6748262bd9e2260acb875c7c0f1cce"  # Replace with your GitHub OAuth Client Secret
+    repo = "comments"                   # The GitHub repository where Gitalk will store issues
+    owner = "theinit01"                         # Your GitHub username
+    admin = "theinit01"                         # Your GitHub username (can add others)
+    id = "location.pathname"                    # Unique identifier for each page/post
+    labels = "gitalk"                           # Label for GitHub issues
+    perPage = 30                                # Number of comments per page
+    pagerDirection = "last"                     # Order of comments (first or last)
+    createIssueManually = true                  # Manually create issues if OAuth does not create them
+    distractionFreeMode = false                 # Hide the sidebar and footer for comments
+  
+  [[params.links]]
+    title = "Link"
+    href = "https://github.com/theinit01"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[services]
+  [services.googleAnalytics]
+    ID = "UA-12345678-1"  # Replace with your actual Google Analytics ID
+

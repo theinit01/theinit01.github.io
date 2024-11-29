@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My Hugo Site</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on My Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/test-post/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/test-post/</guid>
+      <description>&lt;h1 id=&#34;the-power-of-digital-minimalism-simplify-your-life&#34;&gt;The Power of Digital Minimalism: Simplify Your Life&lt;/h1&gt;&#xA;&lt;p&gt;In today&amp;rsquo;s fast-paced, tech-driven world, it’s easy to feel overwhelmed by the constant influx of information and the endless stream of digital content. From social media notifications to emails, the digital world can quickly consume our time and energy. This is where &lt;strong&gt;digital minimalism&lt;/strong&gt; comes in—a philosophy that focuses on intentional use of technology to create more space for what truly matters in life.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
