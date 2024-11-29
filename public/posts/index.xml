@@ -2,96 +2,145 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Terminal</title>
-    <link>//localhost:1313/posts/</link>
+    <link>http://localhost:1313/blog/posts/</link>
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test Title</title>
-      <link>//localhost:1313/posts/test-post/</link>
+      <title>Using Heaps in Golang</title>
+      <link>http://localhost:1313/blog/posts/heaps-in-go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/posts/test-post/</guid>
-      <description>Summary Content</description>
-      <content>&lt;h1 id=&#34;the-power-of-digital-minimalism-simplify-your-life&#34;&gt;The Power of Digital Minimalism: Simplify Your Life&lt;/h1&gt;
-&lt;p&gt;In today&amp;rsquo;s fast-paced, tech-driven world, it’s easy to feel overwhelmed by the constant influx of information and the endless stream of digital content. From social media notifications to emails, the digital world can quickly consume our time and energy. This is where &lt;strong&gt;digital minimalism&lt;/strong&gt; comes in—a philosophy that focuses on intentional use of technology to create more space for what truly matters in life.&lt;/p&gt;
-&lt;h2 id=&#34;what-is-digital-minimalism&#34;&gt;What is Digital Minimalism?&lt;/h2&gt;
-&lt;p&gt;Digital minimalism is the practice of reducing digital clutter, prioritizing tools and activities that truly add value, and eliminating distractions. The concept was popularized by author &lt;strong&gt;Cal Newport&lt;/strong&gt; in his book, &lt;em&gt;Digital Minimalism: Choosing a Focused Life in a Noisy World&lt;/em&gt;. Newport argues that by decluttering your digital life, you can enhance your focus, productivity, and overall well-being.&lt;/p&gt;
-&lt;h3 id=&#34;the-three-core-principles-of-digital-minimalism&#34;&gt;The Three Core Principles of Digital Minimalism&lt;/h3&gt;
+      <guid>http://localhost:1313/blog/posts/heaps-in-go/</guid>
+      <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
+      <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;http://localhost:1313/blog/images/1mghTRv.png&#34;&gt;
+Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Max-Heap&lt;/strong&gt;: The value of each parent node is greater than or equal to the values of its children.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this blog post, we will explore how to implement and use heaps in Go using the &lt;code&gt;container/heap&lt;/code&gt; package.&lt;/p&gt;
+&lt;h2 id=&#34;introduction-to-the-containerheap-package&#34;&gt;Introduction to the &lt;code&gt;container/heap&lt;/code&gt; Package&lt;/h2&gt;
+&lt;p&gt;Go&amp;rsquo;s standard library provides a &lt;code&gt;heap&lt;/code&gt; package in the &lt;code&gt;container&lt;/code&gt; module, which allows you to work with heaps. However, the &lt;code&gt;heap&lt;/code&gt; package does not provide a built-in heap type like in some other languages (Python etc.). Instead, it allows you to define a custom type that implements the &lt;code&gt;heap.Interface&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;key-functions-in-the-heap-package&#34;&gt;Key Functions in the &lt;code&gt;heap&lt;/code&gt; Package&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;heap.Init(h heap.Interface)&lt;/strong&gt;: Transforms the slice into a valid heap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;heap.Push(h heap.Interface, x interface{})&lt;/strong&gt;: Adds an element to the heap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;heap.Pop(h heap.Interface) interface{}&lt;/strong&gt;: Removes and returns the smallest (or largest, depending on the heap type) element from the heap.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To use the &lt;code&gt;heap&lt;/code&gt; package, you must implement the following methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Len() int&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Less(i, j int) bool&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Swap(i, j int)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Push(x interface{})&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pop() interface{}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;implementing-a-min-heap-in-go&#34;&gt;Implementing a Min-Heap in Go&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s start by implementing a &lt;strong&gt;Min-Heap&lt;/strong&gt; (where the smallest element is at the top of the heap). Here is an example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;container/heap&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Define a custom type for the heap
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt; []&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Implement the heap.Interface for IntHeap
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Len is the number of elements in the collection.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Len&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; len(&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;) }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Less reports whether the element with index i should sort before the element with index j.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Less&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;] &amp;lt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;// Min-heap: smallest element should be at the top
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Swap swaps the elements with indexes i and j.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Swap&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;], &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;] = &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;], &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Push adds an element to the heap.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Push&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt;{}) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; = append(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;.(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Pop removes and returns the smallest element from the heap.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Pop&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt;{} {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; len(&lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;old&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; : &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// Create an instance of the IntHeap
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;{&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// Initialize the heap (heapify the slice)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;heap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Init&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// Push an element onto the heap
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;heap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Push&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// Pop elements from the heap
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Min-Heap:&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Len&lt;/span&gt;() &amp;gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// Pop and print the smallest element
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;heap&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Pop&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;explanation&#34;&gt;Explanation:&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Clutter is costly&lt;/strong&gt;: Every app, social media platform, or digital tool you use takes up your time and mental space. The more tools you have, the more fragmented your attention becomes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Custom Heap Type:&lt;/strong&gt; We define &lt;code&gt;IntHeap&lt;/code&gt; as a slice of integers (&lt;code&gt;[]int&lt;/code&gt;) that will be used to implement our heap.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Optimization is important&lt;/strong&gt;: It’s not just about cutting out digital distractions, but also using technology in a way that optimizes your life. The key is using only the digital tools that truly enhance your work, creativity, or relationships.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Implementing &lt;code&gt;heap.Interface&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Len()&lt;/code&gt;: Returns the number of elements in the heap.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Less(i, j)&lt;/code&gt;: Determines the ordering of elements; in this case, it&amp;rsquo;s set up for a Min-Heap where the smaller value should come first.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Swap(i, j)&lt;/code&gt;: Swaps two elements in the slice.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Push(x)&lt;/code&gt;: Adds a new element to the heap.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pop()&lt;/code&gt;: Removes and returns the smallest element from the heap.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Intentionality over convenience&lt;/strong&gt;: It’s easy to let convenience drive our digital habits, but intentionality helps you make mindful choices about how you engage with technology. Be purposeful with your screen time, instead of mindlessly scrolling.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Using the Heap:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;heap.Init(h)&lt;/code&gt; transforms the slice into a valid heap.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;heap.Push(h, 3)&lt;/code&gt; adds the value &lt;code&gt;3&lt;/code&gt; to the heap.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;heap.Pop(h)&lt;/code&gt; removes and prints the smallest element from the heap, one by one.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;steps-to-embrace-digital-minimalism&#34;&gt;Steps to Embrace Digital Minimalism&lt;/h2&gt;
-&lt;h3 id=&#34;1-audit-your-digital-life&#34;&gt;1. Audit Your Digital Life&lt;/h3&gt;
-&lt;p&gt;Start by reviewing your digital habits. Take note of the apps, websites, and social media platforms you engage with regularly. Are they truly serving a purpose? Or are they simply distractions that take up your time and energy? Write down the tools that add the most value and consider eliminating the ones that don’t.&lt;/p&gt;
-&lt;h3 id=&#34;2-set-boundaries-for-technology-use&#34;&gt;2. Set Boundaries for Technology Use&lt;/h3&gt;
-&lt;p&gt;To prevent tech from taking over your life, set clear boundaries. For example:&lt;/p&gt;
+&lt;h2 id=&#34;max-heap-example&#34;&gt;Max-Heap Example&lt;/h2&gt;
+&lt;p&gt;To create a &lt;strong&gt;Max-Heap&lt;/strong&gt;, where the largest element is at the top, we simply modify the &lt;code&gt;Less()&lt;/code&gt; method to reverse the comparison:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Less reports whether the element with index i should sort before the element with index j. 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IntHeap&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Less&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt;{ 	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;] &amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;// Max-heap: largest element should be at the top 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With this change, the heap will behave as a Max-Heap.&lt;/p&gt;
+&lt;h2 id=&#34;when-to-use-heaps&#34;&gt;When to Use Heaps?&lt;/h2&gt;
+&lt;p&gt;Heaps are especially useful for algorithms that need to efficiently retrieve the smallest or largest elements. Some use cases include:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Social media&lt;/strong&gt;: Limit your use to a specific time frame each day or designate a few days a week to check in.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Emails&lt;/strong&gt;: Set specific times to check and respond to emails to avoid constant interruptions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Smartphones&lt;/strong&gt;: Use the &amp;ldquo;Do Not Disturb&amp;rdquo; feature during certain hours to allow focused work time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Priority Queues&lt;/strong&gt;: Heaps allow efficient insertion and extraction of elements based on priority.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Heap Sort&lt;/strong&gt;: Heaps can be used to sort an array by repeatedly extracting the minimum (or maximum) element.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dijkstra’s Algorithm&lt;/strong&gt;: Heaps can be used for finding the shortest path in weighted graphs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;3-replace-screen-time-with-meaningful-activities&#34;&gt;3. Replace Screen Time with Meaningful Activities&lt;/h3&gt;
-&lt;p&gt;Once you’ve eliminated unnecessary digital distractions, replace that time with activities that contribute to your well-being, such as:&lt;/p&gt;
+&lt;h2 id=&#34;advantages-of-using-heaps&#34;&gt;Advantages of Using Heaps&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Reading a book&lt;/li&gt;
-&lt;li&gt;Taking a walk in nature&lt;/li&gt;
-&lt;li&gt;Spending time with loved ones&lt;/li&gt;
-&lt;li&gt;Practicing a hobby like painting, writing, or playing music&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency&lt;/strong&gt;: Inserting and removing elements in a heap takes &lt;code&gt;O(log n)&lt;/code&gt; time, which is faster than sorting the entire collection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory Usage&lt;/strong&gt;: Since heaps are implemented using arrays or slices, they provide a memory-efficient way to manage ordered data.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;the-benefits-of-digital-minimalism&#34;&gt;The Benefits of Digital Minimalism&lt;/h2&gt;
-&lt;p&gt;By embracing digital minimalism, you can experience several benefits:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Increased productivity&lt;/strong&gt;: With fewer distractions, you can focus on your most important tasks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Better mental health&lt;/strong&gt;: Reducing digital clutter can lower stress and anxiety caused by constant notifications and information overload.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Improved relationships&lt;/strong&gt;: With less screen time, you can devote more attention to the people around you.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h2&gt;
-&lt;p&gt;The digital world isn’t going away anytime soon, but we have the power to control how we engage with it. By practicing digital minimalism, you can take back control of your time, enhance your focus, and create space for more meaningful experiences in life. Remember, less is more—focus on what truly matters, and let go of the rest.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;em&gt;What steps will you take to embrace digital minimalism in your own life? Share your thoughts in the comments below!&lt;/em&gt;&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>Test Title 2 GO</title>
-      <link>//localhost:1313/posts/go/</link>
-      <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
-      
-      <guid>//localhost:1313/posts/go/</guid>
-      <description>About Go</description>
-      <content>&lt;h1 id=&#34;introduction-to-go-golang&#34;&gt;Introduction to Go (Golang)&lt;/h1&gt;
-&lt;p&gt;Go, often referred to as Golang, is a statically typed, compiled language designed at Google. It is known for its simplicity, speed, and ease of use, making it a great choice for building scalable and high-performance applications. One of the key features of Go is its ability to handle concurrency using goroutines, which allows multiple tasks to run concurrently without blocking.&lt;/p&gt;
-&lt;p&gt;Here&amp;rsquo;s a simple Go program that prints &amp;ldquo;Hello, World!&amp;rdquo; to the console:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;getting-started-with-go-golang&#34;&gt;Getting Started with Go (Golang)&lt;/h1&gt;
-&lt;p&gt;Go, also known as Golang, is an open-source programming language designed by Google. It is known for its simplicity, speed, and powerful concurrency model. Go is statically typed and compiled, making it highly efficient and suitable for building large-scale applications, microservices, and network servers.&lt;/p&gt;
-&lt;p&gt;One of the defining features of Go is its built-in support for concurrency through goroutines and channels, allowing developers to easily write programs that can handle multiple tasks simultaneously.&lt;/p&gt;
-&lt;p&gt;Here’s a basic Go program that prints &amp;ldquo;Hello, World!&amp;rdquo; to the console:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This simple program shows how Go syntax is clean and easy to understand. Go&amp;rsquo;s design emphasizes simplicity, making it a great choice for developers who need to write reliable and efficient code quickly.&lt;/p&gt;
-&lt;p&gt;With a growing ecosystem and support from Google, Go is becoming an increasingly popular language for backend development, cloud infrastructure, and more.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post, we covered how to implement and use heaps in Go using the &lt;code&gt;container/heap&lt;/code&gt; package. We demonstrated how to create both a Min-Heap and a Max-Heap and showed how you can use the heap to efficiently manage ordered data. Heaps are powerful tools for many algorithms, including priority queues and sorting, and they are a fundamental part of computer science.&lt;/p&gt;
 </content>
     </item>
     
