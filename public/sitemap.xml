@@ -11,32 +11,19 @@
     <loc>//localhost:1313/posts/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/post/</loc>
-    <lastmod>2024-11-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/tags/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/test/</loc>
-    <lastmod>2024-11-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/post/test-post/</loc>
-    <lastmod>2024-11-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/post/go/</loc>
-    <lastmod>2024-11-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/post/heaps-in-go/</loc>
-    <lastmod>2024-11-29T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/posts/heaps-in-go/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/readme/</loc>
+    <loc>//localhost:1313/about/</loc>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
+  </url><url>
+    <loc>//localhost:1313/showcase/</loc>
   </url>
 </urlset>
