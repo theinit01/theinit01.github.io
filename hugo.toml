@@ -1,53 +1,88 @@
-baseURL = "https://theinit01.github.io/blog/"
+baseurl = "/"
 languageCode = "en-us"
-title = "theinit01's blog"
-theme = "github-style"
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+# Add it only if you keep the theme in the `themes` directory.
+# Remove it if you use the theme as a remote Hugo Module.
+theme = "terminal"
+paginate = 5
 
 [params]
-  author = "Tushar Singh"
-  description = "Welcome to my blog!"
-  github = "theinit01"
-  linkedin = "theinit01"
-  email = "tushar3145@gmail.com"
-  enableGitalk = true
-  url = "https://theinit01.github.io/blog/"
-  avatar = "https://avatars.githubusercontent.com/u/75197616?v=4"
-  favicon = "https://www.google.com/s2/favicons?sz=64&domain=github.com"
-  headerIcon = "/images/github-mark.png"
-  keywords = "blog, google analytics"
-  lastmod = true
-  userStatusEmoji = "💻"
-  location = "India"
-  enableSearch = true
+  # dir name of your main content (default is `content/posts`).
+  # the list of set content will show up on your index page (baseurl).
+  contentTypeName = "posts"
 
-  # Gitalk configuration for enabling comments
-  [params.gitalk]
-    clientID = "Ov23liJvwokmBm4lSWRL"          # Replace with your GitHub OAuth Client ID
-    clientSecret = "7edf02feed6748262bd9e2260acb875c7c0f1cce"  # Replace with your GitHub OAuth Client Secret
-    repo = "comments"                   # The GitHub repository where Gitalk will store issues
-    owner = "theinit01"                         # Your GitHub username
-    admin = "theinit01"                         # Your GitHub username (can add others)
-    id = "location.pathname"                    # Unique identifier for each page/post
-    labels = "gitalk"                           # Label for GitHub issues
-    perPage = 30                                # Number of comments per page
-    pagerDirection = "last"                     # Order of comments (first or last)
-    createIssueManually = true                  # Manually create issues if OAuth does not create them
-    distractionFreeMode = false                 # Hide the sidebar and footer for comments
-  
-[outputs]
-  home = ["html", "json"]
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 2
 
-[outputFormats.json]
-  mediaType = "application/json"
-  baseName = "index"
-  isPlainText = false
-  
-[frontmatter]
-  lastmod = ["lastmod", ":fileModTime", ":default"]
+  # show selector to switch language
+  showLanguageSelector = false
 
-[services]
-  [services.googleAnalytics]
-    ID = "UA-12345678-1"  # Replace with your actual Google Analytics ID
+  # set theme to full screen width
+  fullWidthTheme = false
 
+  # center theme with default width
+  centerTheme = true
+
+  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
+  # then the file will be used as a cover automatically.
+  # With this option you don't have to put the `cover` param in a front-matter.
+  autoCover = true
+
+  # set post to show the last updated
+  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
+  showLastUpdated = false
+
+  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
+  # updatedDatePrefix = "Updated"
+
+  # whether to show a page's estimated reading time
+  # readingTime = false # default
+
+  # whether to show a table of contents
+  # can be overridden in a page's front-matter
+  # Toc = false # default
+
+  # set title for the table of contents
+  # can be overridden in a page's front-matter
+  # TocTitle = "Table of Contents" # default
+
+
+[params.twitter]
+  # set Twitter handles for Twitter cards
+  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
+  # do not include @
+  creator = ""
+  site = ""
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "Terminal"
+
+    [languages.en.params]
+      subtitle = "A simple, retro theme for Hugo"
+      owner = ""
+      keywords = ""
+      copyright = ""
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
+      minuteReadingTime = "min read"
+      words = "words"
+
+      [languages.en.params.logo]
+        logoText = "Terminal"
+        logoHomeLink = "/"
+
+      [languages.en.menu]
+        [[languages.en.menu.main]]
+          identifier = "about"
+          name = "About"
+          url = "/about"
+        [[languages.en.menu.main]]
+          identifier = "showcase"
+          name = "Showcase"
+          url = "/showcase"
