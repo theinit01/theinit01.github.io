@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Test on Terminal</title>
-    <link>//localhost:1313/tags/test/</link>
+    <link>http://localhost:1313/blog/tags/test/</link>
     <description>Recent content in Test on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test Title</title>
-      <link>//localhost:1313/post/test-post/</link>
+      <link>http://localhost:1313/blog/post/test-post/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/post/test-post/</guid>
+      <guid>http://localhost:1313/blog/post/test-post/</guid>
       <description>Summary Content</description>
       <content>&lt;h1 id=&#34;the-power-of-digital-minimalism-simplify-your-life&#34;&gt;The Power of Digital Minimalism: Simplify Your Life&lt;/h1&gt;
 &lt;p&gt;In today&amp;rsquo;s fast-paced, tech-driven world, it’s easy to feel overwhelmed by the constant influx of information and the endless stream of digital content. From social media notifications to emails, the digital world can quickly consume our time and energy. This is where &lt;strong&gt;digital minimalism&lt;/strong&gt; comes in—a philosophy that focuses on intentional use of technology to create more space for what truly matters in life.&lt;/p&gt;
