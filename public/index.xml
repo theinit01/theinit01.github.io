@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terminal</title>
-    <link>http://localhost:1313/blog/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test Title</title>
-      <link>http://localhost:1313/blog/post/test-post/</link>
+      <link>//localhost:1313/post/test-post/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/post/test-post/</guid>
+      <guid>//localhost:1313/post/test-post/</guid>
       <description>Summary Content</description>
       <content>&lt;h1 id=&#34;the-power-of-digital-minimalism-simplify-your-life&#34;&gt;The Power of Digital Minimalism: Simplify Your Life&lt;/h1&gt;
 &lt;p&gt;In today&amp;rsquo;s fast-paced, tech-driven world, itâ€™s easy to feel overwhelmed by the constant influx of information and the endless stream of digital content. From social media notifications to emails, the digital world can quickly consume our time and energy. This is where &lt;strong&gt;digital minimalism&lt;/strong&gt; comes inâ€”a philosophy that focuses on intentional use of technology to create more space for what truly matters in life.&lt;/p&gt;
@@ -64,10 +64,10 @@
     
     <item>
       <title>Test Title 2 GO</title>
-      <link>http://localhost:1313/blog/post/go/</link>
+      <link>//localhost:1313/post/go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/post/go/</guid>
+      <guid>//localhost:1313/post/go/</guid>
       <description>About Go</description>
       <content>&lt;h1 id=&#34;introduction-to-go-golang&#34;&gt;Introduction to Go (Golang)&lt;/h1&gt;
 &lt;p&gt;Go, often referred to as Golang, is a statically typed, compiled language designed at Google. It is known for its simplicity, speed, and ease of use, making it a great choice for building scalable and high-performance applications. One of the key features of Go is its ability to handle concurrency using goroutines, which allows multiple tasks to run concurrently without blocking.&lt;/p&gt;
@@ -97,10 +97,10 @@
     
     <item>
       <title>Using Heaps in Golang</title>
-      <link>http://localhost:1313/blog/post/heaps-in-go/</link>
+      <link>//localhost:1313/post/heaps-in-go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/post/heaps-in-go/</guid>
+      <guid>//localhost:1313/post/heaps-in-go/</guid>
       <description>How to use heaps or priority queue in Go</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
 &lt;p&gt;Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
@@ -233,13 +233,13 @@
     
     <item>
       <title>Using Heaps in Golang</title>
-      <link>http://localhost:1313/blog/posts/heaps-in-go/</link>
+      <link>//localhost:1313/posts/heaps-in-go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/posts/heaps-in-go/</guid>
+      <guid>//localhost:1313/posts/heaps-in-go/</guid>
       <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;http://localhost:1313/blog/images/1mghTRv.png&#34;&gt;
+&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;
@@ -370,10 +370,10 @@ Heaps (Priority Queues) are often used for implementing priority queues and effi
     
     <item>
       <title></title>
-      <link>http://localhost:1313/blog/readme/</link>
+      <link>//localhost:1313/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/readme/</guid>
+      <guid>//localhost:1313/readme/</guid>
       <description>&lt;p&gt;ÿþ&lt;code&gt;ï¿½Hï¿½eï¿½lï¿½lï¿½oï¿½ ï¿½Wï¿½oï¿½rï¿½lï¿½dï¿½!ï¿½&lt;/code&gt;ï¿½ï¿½
 ï¿½&lt;/p&gt;</description>
       <content>&lt;p&gt;ÿþ&lt;code&gt;ï¿½Hï¿½eï¿½lï¿½lï¿½oï¿½ ï¿½Wï¿½oï¿½rï¿½lï¿½dï¿½!ï¿½&lt;/code&gt;ï¿½ï¿½
