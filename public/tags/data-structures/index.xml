@@ -15,7 +15,7 @@
       <guid>//localhost:1313/posts/heaps-in-go/</guid>
       <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;

@@ -6,7 +6,378 @@
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media</title>
+      <link>//localhost:1313/posts/media-stack/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/media-stack/</guid>
+      <description>This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server.</description>
+      <content>&lt;p&gt;A self-hosted media stack is a powerful setup that allows you to manage, stream, and automate your media content. It includes a variety of applications designed to work together seamlessly for downloading, organizing, and streaming movies and TV shows. This guide explains what each component of the stack does and how they interact with each other.&lt;/p&gt;
+&lt;p&gt;This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/Untitled-2024-10-04-1634.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s first see what each component does:&lt;/p&gt;
+&lt;h3 id=&#34;1-jellyfin&#34;&gt;1. &lt;strong&gt;Jellyfin&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; is an open-source media server that streams your downloaded movies and TV shows to any device. It allows you to organize and view your media in a user-friendly interface.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Jellyfin organizes your media content into categories such as movies, TV shows, and music.&lt;/li&gt;
+&lt;li&gt;It streams media directly to your devices (TV, phone, computer) over your home network.&lt;/li&gt;
+&lt;li&gt;Jellyfin integrates with &lt;strong&gt;Radarr&lt;/strong&gt; and &lt;strong&gt;Sonarr&lt;/strong&gt; to automatically update the library with newly downloaded content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-radarr&#34;&gt;2. &lt;strong&gt;Radarr&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Radarr&lt;/strong&gt; is a movie collection manager for &lt;strong&gt;movies&lt;/strong&gt;. It automates the process of searching for, downloading, and managing your movie collection. Radarr integrates with &lt;strong&gt;qBittorrent&lt;/strong&gt; to download movies when you add them to your library.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works-1&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Radarr automatically monitors movies and searches for available torrents via configured indexers.&lt;/li&gt;
+&lt;li&gt;It sends requests to &lt;strong&gt;qBittorrent&lt;/strong&gt; to download the movie once a suitable source is found.&lt;/li&gt;
+&lt;li&gt;Radarr can also be configured to automatically organize your downloaded movies into specific folders.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-sonarr&#34;&gt;3. &lt;strong&gt;Sonarr&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Sonarr&lt;/strong&gt; is a similar tool to Radarr, but it is specifically designed for managing TV shows. It automates the process of searching, downloading, and organizing episodes of your favorite shows.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works-2&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Sonarr searches for new episodes and automatically adds them to your download queue.&lt;/li&gt;
+&lt;li&gt;Just like Radarr, Sonarr integrates with &lt;strong&gt;qBittorrent&lt;/strong&gt; and manages the download and organization of TV episodes.&lt;/li&gt;
+&lt;li&gt;Sonarr can be configured to monitor TV shows and automatically download new episodes as soon as they’re available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-prowlarr&#34;&gt;4. &lt;strong&gt;Prowlarr&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Prowlarr&lt;/strong&gt; is an indexer manager that connects to multiple indexers (websites that host torrents) and manages them for both &lt;strong&gt;Radarr&lt;/strong&gt; and &lt;strong&gt;Sonarr&lt;/strong&gt;. Prowlarr can search for content across a wide range of torrent indexers and provides an easy interface for managing them.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works-3&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Prowlarr manages and organizes indexers (like Nyaa, Rarbg, etc.) for both Radarr and Sonarr.&lt;/li&gt;
+&lt;li&gt;It automatically integrates indexers into both Radarr and Sonarr, so they can use them to search for torrents.&lt;/li&gt;
+&lt;li&gt;If VPN is enabled, Prowlarr must use the static IPs for Radarr and Sonarr because they are behind the VPN network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-qbittorrent&#34;&gt;5. &lt;strong&gt;qBittorrent&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;qBittorrent&lt;/strong&gt; is a popular torrent client used for downloading media content. It is lightweight, feature-rich, and easy to use. In this stack, &lt;strong&gt;qBittorrent&lt;/strong&gt; acts as the download manager for both &lt;strong&gt;Radarr&lt;/strong&gt; and &lt;strong&gt;Sonarr&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works-4&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;qBittorrent is the engine that downloads the torrents requested by Radarr and Sonarr.&lt;/li&gt;
+&lt;li&gt;It’s controlled via its &lt;strong&gt;WebUI&lt;/strong&gt;, and you can set up &lt;strong&gt;authentication&lt;/strong&gt; to secure access.&lt;/li&gt;
+&lt;li&gt;It can be configured to save downloads in specific folders (like /downloads/movies and /downloads/tvshows).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-jellyseerr&#34;&gt;6. &lt;strong&gt;Jellyseerr&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Jellyseerr&lt;/strong&gt; is a fork of &lt;strong&gt;Overseerr&lt;/strong&gt;. It acts as a frontend interface for your &lt;strong&gt;Jellyfin&lt;/strong&gt; media server, allowing you to manage and request media content easily. It integrates with both &lt;strong&gt;Radarr&lt;/strong&gt; and &lt;strong&gt;Sonarr&lt;/strong&gt; to provide a seamless way to request new movies and TV shows.&lt;/p&gt;
+&lt;h4 id=&#34;how-it-works-5&#34;&gt;How it works:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Jellyseerr acts as a bridge between your users and your media collection.&lt;/li&gt;
+&lt;li&gt;It allows users to request new movies or TV shows, which Jellyseerr adds to Radarr or Sonarr for download.&lt;/li&gt;
+&lt;li&gt;Once a movie or show is downloaded, it becomes available for streaming in &lt;strong&gt;Jellyfin&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;docker-composeyml&#34;&gt;Docker-compose.yml&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;version&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.9&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media-stack&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;qbittorrent&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;qbittorrent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;lscr.io/linuxserver/qbittorrent:5.0.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;WEBUI_PORT=5080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;qbittorrent-config:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;torrent-downloads:/downloads&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;5080&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;5080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;6881&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;6881&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;6881&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;6881&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;/udp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unless-stopped&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;radarr&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;radarr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;lscr.io/linuxserver/radarr:5.15.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;mynetwork   &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;7878&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;7878&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;radarr-config:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;torrent-downloads:/downloads&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unless-stopped&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;sonarr&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;linuxserver/sonarr:4.0.11&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;sonarr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;mynetwork&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;sonarr-config:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;torrent-downloads:/downloads&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;8989&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8989&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;prowlarr&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;prowlarr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;linuxserver/prowlarr:1.27.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:               
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;mynetwork           &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;prowlarr-config:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;9696&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;9696&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;jellyseerr&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;fallenbagel/jellyseerr:2.1.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;jellyseerr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;mynetwork&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;jellyseerr-config:/app/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;5055&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;5055&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;jellyfin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;linuxserver/jellyfin:10.10.3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;container_name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;jellyfin&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;mynetwork&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PUID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;PGID=1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;TZ=UTC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;jellyfin-config:/config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;torrent-downloads:/data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;8096&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8096&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;7359&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;7359&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;/udp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;8920&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;8920&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;restart&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;unless-stopped&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;torrent-downloads&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;radarr-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;sonarr-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;prowlarr-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;jellyfin-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;qbittorrent-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;jellyseerr-config&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;networks&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;mynetwork&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;external&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To deploy the stack , Run below command.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;setting-up-and-configuring-your-self-hosted-media-stack&#34;&gt;Setting Up and Configuring Your Self-Hosted Media Stack&lt;/h1&gt;
+&lt;p&gt;In this section, we will walk you through how to &lt;strong&gt;set up and configure&lt;/strong&gt; the different components of your media stack. The main components we will configure are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;qBittorrent&lt;/strong&gt; for downloading media files&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Radarr&lt;/strong&gt; and &lt;strong&gt;Sonarr&lt;/strong&gt; for automating movie and TV show downloads&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; for streaming media&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jellyseerr&lt;/strong&gt; for managing media requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prowlarr&lt;/strong&gt; for managing indexers and providing content to Radarr and Sonarr&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s break it down step-by-step.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-configure-qbittorrent&#34;&gt;1. Configure qBittorrent&lt;/h2&gt;
+&lt;p&gt;qBittorrent is your &lt;strong&gt;torrent client&lt;/strong&gt;, and it will be responsible for downloading your media files. To configure it:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-qbittorrent-web-ui&#34;&gt;a. Access qBittorrent Web UI&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:5080&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The default &lt;strong&gt;username&lt;/strong&gt; is &lt;code&gt;admin&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;To find the &lt;strong&gt;temporary password&lt;/strong&gt;, run the following command to check the container logs:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  docker logs qbittorrent
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;b-change-the-default-password&#34;&gt;b. Change the Default Password&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Once logged in, go to &lt;strong&gt;Tools&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Options&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Web UI&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Change the &lt;strong&gt;password&lt;/strong&gt; to something more secure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;c-set-up-download-folders&#34;&gt;c. Set Up Download Folders&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Now, let’s set up the folders where qBittorrent will store your downloaded media files. Run the following commands on the server:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker exec -it qbittorrent bash &lt;span style=&#34;color:#75715e&#34;&gt;# Get inside qBittorrent container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Above command will get you inside qBittorrent interactive terminal, Run below command in qbt terminal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir /downloads/movies /downloads/tvshows
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chown 1000:1000 /downloads/movies /downloads/tvshows
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This creates two directories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/downloads/movies&lt;/code&gt; for your movie downloads&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/downloads/tvshows&lt;/code&gt; for your TV show downloads&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-configure-radarr&#34;&gt;2. Configure Radarr&lt;/h2&gt;
+&lt;p&gt;Radarr is responsible for automating the &lt;strong&gt;download&lt;/strong&gt; and &lt;strong&gt;organization of movies&lt;/strong&gt;. Here&amp;rsquo;s how to set it up:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-radarr&#34;&gt;a. Access Radarr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:7878&lt;/code&gt; to access the Radarr interface.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-configure-media-management&#34;&gt;b. Configure Media Management&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Media Management&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Check the option &lt;strong&gt;&amp;ldquo;Movies deleted from disk are automatically unmonitored in Radarr&amp;rdquo;&lt;/strong&gt; under the &lt;strong&gt;File management&lt;/strong&gt; section.&lt;/li&gt;
+&lt;li&gt;Scroll down and add a &lt;strong&gt;Root Folder&lt;/strong&gt; by clicking &lt;strong&gt;Add Root Folder&lt;/strong&gt; and choosing &lt;code&gt;/downloads/movies&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;c-configure-download-client-qbittorrent&#34;&gt;c. Configure Download Client (qBittorrent)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Download Clients&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Add Client&lt;/strong&gt; and select &lt;strong&gt;qBittorrent&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Enter the following information:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: &lt;code&gt;qbittorrent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Port&lt;/strong&gt;: &lt;code&gt;5080&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Username&lt;/strong&gt;: &lt;code&gt;admin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Password&lt;/strong&gt;: The password you set earlier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Test&lt;/strong&gt; to make sure the connection works, then &lt;strong&gt;Save&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;d-enable-authentication&#34;&gt;d. Enable Authentication&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;General&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Enable &lt;strong&gt;Advanced Settings&lt;/strong&gt; and select &lt;strong&gt;Authentication&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Set up a &lt;strong&gt;username&lt;/strong&gt; and &lt;strong&gt;password&lt;/strong&gt; for additional security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;3-configure-sonarr&#34;&gt;3. Configure Sonarr&lt;/h2&gt;
+&lt;p&gt;Sonarr is similar to Radarr but for &lt;strong&gt;TV shows&lt;/strong&gt;. To configure Sonarr:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-sonarr&#34;&gt;a. Access Sonarr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:8989&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-configure-media-management-1&#34;&gt;b. Configure Media Management&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Media Management&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Add a &lt;strong&gt;Root Folder&lt;/strong&gt; pointing to &lt;code&gt;/downloads/tvshows&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;c-configure-download-client-qbittorrent-1&#34;&gt;c. Configure Download Client (qBittorrent)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Download Clients&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;qBittorrent&lt;/strong&gt; and enter the same details as Radarr:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt;: &lt;code&gt;qbittorrent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Port&lt;/strong&gt;: &lt;code&gt;5080&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Username&lt;/strong&gt;: &lt;code&gt;admin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Password&lt;/strong&gt;: The password you set earlier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Test&lt;/strong&gt; and then &lt;strong&gt;Save&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;4-configure-prowlarr&#34;&gt;4. Configure Prowlarr&lt;/h2&gt;
+&lt;p&gt;Prowlarr manages the &lt;strong&gt;indexers&lt;/strong&gt; that Radarr and Sonarr use to find and download content. Here’s how to configure Prowlarr:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-prowlarr&#34;&gt;a. Access Prowlarr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:9696&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-set-up-authentication&#34;&gt;b. Set Up Authentication&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;General&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Authentication&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Enable Authentication and create a &lt;strong&gt;username&lt;/strong&gt; and &lt;strong&gt;password&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;c-add-indexers&#34;&gt;c. Add Indexers&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Indexers&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Add Indexer&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Choose an &lt;strong&gt;Indexer&lt;/strong&gt; (e.g., Jackett, NZBHydra2, etc.), enter the &lt;strong&gt;base URL&lt;/strong&gt; of the indexer, and click &lt;strong&gt;Test&lt;/strong&gt; to make sure it’s working. Then, click &lt;strong&gt;Save&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;d-add-applications-radarr-and-sonarr&#34;&gt;d. Add Applications (Radarr and Sonarr)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Apps&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Add Application&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;Radarr&lt;/strong&gt; and enter:
+&lt;ul&gt;
+&lt;li&gt;Prowlarr server URL: &lt;code&gt;http://prowlarr:9696&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Radarr server URL: &lt;code&gt;http://radarr:7878&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API Key&lt;/strong&gt;: Found in Radarr&amp;rsquo;s settings.&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Test&lt;/strong&gt; and then &lt;strong&gt;Save&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Do the same for &lt;strong&gt;Sonarr&lt;/strong&gt;, entering:
+&lt;ul&gt;
+&lt;li&gt;Sonarr server URL: &lt;code&gt;http://sonarr:8989&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;API Key: Found in Sonarr&amp;rsquo;s settings.&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Test&lt;/strong&gt; and then &lt;strong&gt;Save&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-configure-jellyfin&#34;&gt;5. Configure Jellyfin&lt;/h2&gt;
+&lt;p&gt;Jellyfin is your &lt;strong&gt;media server&lt;/strong&gt; that will stream your movies and TV shows to various devices. Here&amp;rsquo;s how to configure it:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-jellyfin&#34;&gt;a. Access Jellyfin&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:8096&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;When accessing Jellyfin for the first time, a &lt;strong&gt;guided configuration&lt;/strong&gt; will appear. Just follow the steps to complete the setup.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-add-media-library&#34;&gt;b. Add Media Library&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;During the setup process, you’ll be prompted to &lt;strong&gt;Add Media Library&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Choose &lt;strong&gt;/data/movies/&lt;/strong&gt; as the media folder for your movie library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;6-configure-jellyseerr&#34;&gt;6. Configure Jellyseerr&lt;/h2&gt;
+&lt;p&gt;Jellyseerr is a &lt;strong&gt;media request system&lt;/strong&gt; that integrates with Jellyfin, Radarr, and Sonarr. Here’s how to set it up:&lt;/p&gt;
+&lt;h3 id=&#34;a-access-jellyseerr&#34;&gt;a. Access Jellyseerr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:5055&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;When accessing Jellyseerr for the first time, a &lt;strong&gt;guided configuration&lt;/strong&gt; will guide you through the setup process. Follow the steps and provide the necessary details about your Radarr and Sonarr setups.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-follow-the-jellyseerr-setup-documentation&#34;&gt;b. Follow the Jellyseerr Setup Documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;For a more detailed setup, you can follow the Jellyseerr documentation, as Jellyseerr is a fork of Overseerr.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With these steps completed, your self-hosted media stack is now configured and ready to automate media management, downloading, and streaming. You&amp;rsquo;ll be able to search for movies and TV shows, automatically download them, and stream them to your devices — all while ensuring your privacy and security through the use of a VPN.&lt;/p&gt;
+&lt;h1 id=&#34;using-jellyseerr-to-request-media&#34;&gt;Using Jellyseerr to Request Media&lt;/h1&gt;
+&lt;h3 id=&#34;a-access-jellyseerr-1&#34;&gt;a. Access Jellyseerr&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a browser and go to &lt;code&gt;http://localhost:5055&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;b-request-a-movie-or-tv-show&#34;&gt;b. Request a Movie or TV Show&lt;/h3&gt;
+&lt;p&gt;Once Jellyseerr is set up:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;On the &lt;strong&gt;main dashboard&lt;/strong&gt;, you’ll see options to &lt;strong&gt;Search&lt;/strong&gt; for a movie or TV show.&lt;/li&gt;
+&lt;li&gt;Use the &lt;strong&gt;Search bar&lt;/strong&gt; to find the title you want.&lt;/li&gt;
+&lt;li&gt;Once you find your movie or TV show, click on it, and you&amp;rsquo;ll see options to &lt;strong&gt;Request&lt;/strong&gt; it.&lt;/li&gt;
+&lt;li&gt;Select the quality profile you want, and click &lt;strong&gt;Request&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;c-automated-download-process&#34;&gt;c. Automated Download Process&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;After you request a title, Jellyseerr sends the request to &lt;strong&gt;Radarr (for movies)&lt;/strong&gt; or &lt;strong&gt;Sonarr (for TV shows)&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Radarr or Sonarr will then handle the &lt;strong&gt;downloading and organizing&lt;/strong&gt; of the requested media.&lt;/li&gt;
+&lt;li&gt;You can check the progress of your request in the &lt;strong&gt;Activities&lt;/strong&gt; section of Jellyseerr.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;d-manage-requests&#34;&gt;d. Manage Requests&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;If you need to cancel or view the status of your requests, go to the &lt;strong&gt;Requests&lt;/strong&gt; tab in Jellyseerr.&lt;/li&gt;
+&lt;li&gt;Here, you can see which requests are &lt;strong&gt;queued&lt;/strong&gt;, &lt;strong&gt;downloading&lt;/strong&gt;, or &lt;strong&gt;completed&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;streaming-with-jellyfin&#34;&gt;Streaming with Jellyfin&lt;/h1&gt;
+&lt;p&gt;After setting up your media stack and configuring all the components, &lt;strong&gt;Jellyfin&lt;/strong&gt; serves as your personal media server where you can enjoy all your content.&lt;/p&gt;
+&lt;h3 id=&#34;using-jellyfin&#34;&gt;Using Jellyfin&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Jellyfin at &lt;code&gt;http://localhost:8096&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You can add your movies and TV shows by selecting the appropriate folders (e.g., &lt;code&gt;/data/movies/&lt;/code&gt; for movies).&lt;/li&gt;
+&lt;li&gt;Once your libraries are set up, you can start streaming your content directly from the Jellyfin web interface, or use any supported device, such as smart TVs, mobile apps, or streaming boxes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Jellyfin is fully customizable and lets you organize, stream, and share your media on your terms—without relying on third-party services.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;By combining tools like Radarr, Sonarr, Jellyseerr, and Jellyfin, you&amp;rsquo;ve built a robust &lt;strong&gt;self-hosted media stack&lt;/strong&gt; that lets you automatically download, organize, request, and stream your media content. Enjoy your personal, on-demand streaming service!&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Using Heaps in Golang</title>
       <link>//localhost:1313/posts/heaps-in-go/</link>
@@ -15,7 +386,7 @@
       <guid>//localhost:1313/posts/heaps-in-go/</guid>
       <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;

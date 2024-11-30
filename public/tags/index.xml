@@ -6,7 +6,27 @@
     <description>Recent content in Tags on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation</title>
+      <link>//localhost:1313/tags/automation/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/tags/automation/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Media</title>
+      <link>//localhost:1313/tags/media/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/tags/media/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
     <item>
       <title>Data Structures</title>
       <link>//localhost:1313/tags/data-structures/</link>

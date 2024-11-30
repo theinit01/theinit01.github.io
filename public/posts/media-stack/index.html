@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server." />
+<meta name="keywords" content="blog, technology, programming, coding, hacking" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/media-stack/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.dd0bf9c7cacb24c1b0184f52f1869b274e06689557468cc7030ccf632328eb97.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media">
+<meta property="og:description" content="This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server." />
+<meta property="og:url" content="//localhost:1313/posts/media-stack/" />
+<meta property="og:site_name" content="Terminal" />
+
+  <meta property="og:image" content="//localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-11-30 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    theinit01
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/media-stack/">Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-11-30</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/automation/">automation</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/media/">media</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>A self-hosted media stack is a powerful setup that allows you to manage, stream, and automate your media content. It includes a variety of applications designed to work together seamlessly for downloading, organizing, and streaming movies and TV shows. This guide explains what each component of the stack does and how they interact with each other.</p>
+<p>This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.</p>
+<p><img alt="Image Description" src="/images/Untitled-2024-10-04-1634.png"></p>
+<p>Let&rsquo;s first see what each component does:</p>
+<h3 id="1-jellyfin">1. <strong>Jellyfin</strong><a href="#1-jellyfin" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Jellyfin</strong> is an open-source media server that streams your downloaded movies and TV shows to any device. It allows you to organize and view your media in a user-friendly interface.</p>
+<h4 id="how-it-works">How it works:<a href="#how-it-works" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Jellyfin organizes your media content into categories such as movies, TV shows, and music.</li>
+<li>It streams media directly to your devices (TV, phone, computer) over your home network.</li>
+<li>Jellyfin integrates with <strong>Radarr</strong> and <strong>Sonarr</strong> to automatically update the library with newly downloaded content.</li>
+</ul>
+<h3 id="2-radarr">2. <strong>Radarr</strong><a href="#2-radarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Radarr</strong> is a movie collection manager for <strong>movies</strong>. It automates the process of searching for, downloading, and managing your movie collection. Radarr integrates with <strong>qBittorrent</strong> to download movies when you add them to your library.</p>
+<h4 id="how-it-works-1">How it works:<a href="#how-it-works-1" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Radarr automatically monitors movies and searches for available torrents via configured indexers.</li>
+<li>It sends requests to <strong>qBittorrent</strong> to download the movie once a suitable source is found.</li>
+<li>Radarr can also be configured to automatically organize your downloaded movies into specific folders.</li>
+</ul>
+<h3 id="3-sonarr">3. <strong>Sonarr</strong><a href="#3-sonarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Sonarr</strong> is a similar tool to Radarr, but it is specifically designed for managing TV shows. It automates the process of searching, downloading, and organizing episodes of your favorite shows.</p>
+<h4 id="how-it-works-2">How it works:<a href="#how-it-works-2" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Sonarr searches for new episodes and automatically adds them to your download queue.</li>
+<li>Just like Radarr, Sonarr integrates with <strong>qBittorrent</strong> and manages the download and organization of TV episodes.</li>
+<li>Sonarr can be configured to monitor TV shows and automatically download new episodes as soon as they’re available.</li>
+</ul>
+<h3 id="4-prowlarr">4. <strong>Prowlarr</strong><a href="#4-prowlarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Prowlarr</strong> is an indexer manager that connects to multiple indexers (websites that host torrents) and manages them for both <strong>Radarr</strong> and <strong>Sonarr</strong>. Prowlarr can search for content across a wide range of torrent indexers and provides an easy interface for managing them.</p>
+<h4 id="how-it-works-3">How it works:<a href="#how-it-works-3" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Prowlarr manages and organizes indexers (like Nyaa, Rarbg, etc.) for both Radarr and Sonarr.</li>
+<li>It automatically integrates indexers into both Radarr and Sonarr, so they can use them to search for torrents.</li>
+<li>If VPN is enabled, Prowlarr must use the static IPs for Radarr and Sonarr because they are behind the VPN network.</li>
+</ul>
+<h3 id="5-qbittorrent">5. <strong>qBittorrent</strong><a href="#5-qbittorrent" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>qBittorrent</strong> is a popular torrent client used for downloading media content. It is lightweight, feature-rich, and easy to use. In this stack, <strong>qBittorrent</strong> acts as the download manager for both <strong>Radarr</strong> and <strong>Sonarr</strong>.</p>
+<h4 id="how-it-works-4">How it works:<a href="#how-it-works-4" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>qBittorrent is the engine that downloads the torrents requested by Radarr and Sonarr.</li>
+<li>It’s controlled via its <strong>WebUI</strong>, and you can set up <strong>authentication</strong> to secure access.</li>
+<li>It can be configured to save downloads in specific folders (like /downloads/movies and /downloads/tvshows).</li>
+</ul>
+<h3 id="6-jellyseerr">6. <strong>Jellyseerr</strong><a href="#6-jellyseerr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p><strong>Jellyseerr</strong> is a fork of <strong>Overseerr</strong>. It acts as a frontend interface for your <strong>Jellyfin</strong> media server, allowing you to manage and request media content easily. It integrates with both <strong>Radarr</strong> and <strong>Sonarr</strong> to provide a seamless way to request new movies and TV shows.</p>
+<h4 id="how-it-works-5">How it works:<a href="#how-it-works-5" class="hanchor" ariaLabel="Anchor">#</a> </h4>
+<ul>
+<li>Jellyseerr acts as a bridge between your users and your media collection.</li>
+<li>It allows users to request new movies or TV shows, which Jellyseerr adds to Radarr or Sonarr for download.</li>
+<li>Once a movie or show is downloaded, it becomes available for streaming in <strong>Jellyfin</strong>.</li>
+</ul>
+<h2 id="docker-composeyml">Docker-compose.yml<a href="#docker-composeyml" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.9&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">media-stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qbittorrent</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">qbittorrent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/qbittorrent:5.0.2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">WEBUI_PORT=5080</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">qbittorrent-config:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">torrent-downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">5080</span>:<span style="color:#ae81ff">5080</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6881</span>:<span style="color:#ae81ff">6881</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6881</span>:<span style="color:#ae81ff">6881</span><span style="color:#ae81ff">/udp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#e6db74">&#34;unless-stopped&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">radarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">radarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/radarr:5.15.1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mynetwork   </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">7878</span>:<span style="color:#ae81ff">7878</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">radarr-config:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">torrent-downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#e6db74">&#34;unless-stopped&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sonarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">linuxserver/sonarr:4.0.11</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">sonarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mynetwork</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">sonarr-config:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">torrent-downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8989</span>:<span style="color:#ae81ff">8989</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">prowlarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">prowlarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">linuxserver/prowlarr:1.27.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:               
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mynetwork           </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">prowlarr-config:/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">9696</span>:<span style="color:#ae81ff">9696</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">jellyseerr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">fallenbagel/jellyseerr:2.1.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mynetwork</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">jellyseerr-config:/app/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">5055</span>:<span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">jellyfin</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">linuxserver/jellyfin:10.10.3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">jellyfin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mynetwork</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">jellyfin-config:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">torrent-downloads:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8096</span>:<span style="color:#ae81ff">8096</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">7359</span>:<span style="color:#ae81ff">7359</span><span style="color:#ae81ff">/udp</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8920</span>:<span style="color:#ae81ff">8920</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">torrent-downloads</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">radarr-config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sonarr-config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">prowlarr-config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">jellyfin-config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qbittorrent-config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">jellyseerr-config</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mynetwork</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>To deploy the stack , Run below command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><h1 id="setting-up-and-configuring-your-self-hosted-media-stack">Setting Up and Configuring Your Self-Hosted Media Stack<a href="#setting-up-and-configuring-your-self-hosted-media-stack" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>In this section, we will walk you through how to <strong>set up and configure</strong> the different components of your media stack. The main components we will configure are:</p>
+<ul>
+<li><strong>qBittorrent</strong> for downloading media files</li>
+<li><strong>Radarr</strong> and <strong>Sonarr</strong> for automating movie and TV show downloads</li>
+<li><strong>Jellyfin</strong> for streaming media</li>
+<li><strong>Jellyseerr</strong> for managing media requests</li>
+<li><strong>Prowlarr</strong> for managing indexers and providing content to Radarr and Sonarr</li>
+</ul>
+<p>Let&rsquo;s break it down step-by-step.</p>
+<hr>
+<h2 id="1-configure-qbittorrent">1. Configure qBittorrent<a href="#1-configure-qbittorrent" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>qBittorrent is your <strong>torrent client</strong>, and it will be responsible for downloading your media files. To configure it:</p>
+<h3 id="a-access-qbittorrent-web-ui">a. Access qBittorrent Web UI<a href="#a-access-qbittorrent-web-ui" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:5080</code>.</li>
+<li>The default <strong>username</strong> is <code>admin</code>.</li>
+<li>To find the <strong>temporary password</strong>, run the following command to check the container logs:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  docker logs qbittorrent
+</span></span></code></pre></div><h3 id="b-change-the-default-password">b. Change the Default Password<a href="#b-change-the-default-password" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Once logged in, go to <strong>Tools</strong> -&gt; <strong>Options</strong> -&gt; <strong>Web UI</strong>.</li>
+<li>Change the <strong>password</strong> to something more secure.</li>
+</ul>
+<h3 id="c-set-up-download-folders">c. Set Up Download Folders<a href="#c-set-up-download-folders" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Now, let’s set up the folders where qBittorrent will store your downloaded media files. Run the following commands on the server:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it qbittorrent bash <span style="color:#75715e"># Get inside qBittorrent container</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Above command will get you inside qBittorrent interactive terminal, Run below command in qbt terminal</span>
+</span></span><span style="display:flex;"><span>mkdir /downloads/movies /downloads/tvshows
+</span></span><span style="display:flex;"><span>chown 1000:1000 /downloads/movies /downloads/tvshows
+</span></span></code></pre></div><p>This creates two directories:</p>
+<ul>
+<li><code>/downloads/movies</code> for your movie downloads</li>
+<li><code>/downloads/tvshows</code> for your TV show downloads</li>
+</ul>
+<hr>
+<h2 id="2-configure-radarr">2. Configure Radarr<a href="#2-configure-radarr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Radarr is responsible for automating the <strong>download</strong> and <strong>organization of movies</strong>. Here&rsquo;s how to set it up:</p>
+<h3 id="a-access-radarr">a. Access Radarr<a href="#a-access-radarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:7878</code> to access the Radarr interface.</li>
+</ul>
+<h3 id="b-configure-media-management">b. Configure Media Management<a href="#b-configure-media-management" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>Media Management</strong>.</li>
+<li>Check the option <strong>&ldquo;Movies deleted from disk are automatically unmonitored in Radarr&rdquo;</strong> under the <strong>File management</strong> section.</li>
+<li>Scroll down and add a <strong>Root Folder</strong> by clicking <strong>Add Root Folder</strong> and choosing <code>/downloads/movies</code>.</li>
+</ul>
+<h3 id="c-configure-download-client-qbittorrent">c. Configure Download Client (qBittorrent)<a href="#c-configure-download-client-qbittorrent" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>Download Clients</strong>.</li>
+<li>Click <strong>Add Client</strong> and select <strong>qBittorrent</strong>.</li>
+<li>Enter the following information:
+<ul>
+<li><strong>Host</strong>: <code>qbittorrent</code></li>
+<li><strong>Port</strong>: <code>5080</code></li>
+<li><strong>Username</strong>: <code>admin</code></li>
+<li><strong>Password</strong>: The password you set earlier</li>
+</ul>
+</li>
+<li>Click <strong>Test</strong> to make sure the connection works, then <strong>Save</strong>.</li>
+</ul>
+<h3 id="d-enable-authentication">d. Enable Authentication<a href="#d-enable-authentication" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>General</strong>.</li>
+<li>Enable <strong>Advanced Settings</strong> and select <strong>Authentication</strong>.</li>
+<li>Set up a <strong>username</strong> and <strong>password</strong> for additional security.</li>
+</ul>
+<hr>
+<h2 id="3-configure-sonarr">3. Configure Sonarr<a href="#3-configure-sonarr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Sonarr is similar to Radarr but for <strong>TV shows</strong>. To configure Sonarr:</p>
+<h3 id="a-access-sonarr">a. Access Sonarr<a href="#a-access-sonarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:8989</code>.</li>
+</ul>
+<h3 id="b-configure-media-management-1">b. Configure Media Management<a href="#b-configure-media-management-1" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>Media Management</strong>.</li>
+<li>Add a <strong>Root Folder</strong> pointing to <code>/downloads/tvshows</code>.</li>
+</ul>
+<h3 id="c-configure-download-client-qbittorrent-1">c. Configure Download Client (qBittorrent)<a href="#c-configure-download-client-qbittorrent-1" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>Download Clients</strong>.</li>
+<li>Select <strong>qBittorrent</strong> and enter the same details as Radarr:
+<ul>
+<li><strong>Host</strong>: <code>qbittorrent</code></li>
+<li><strong>Port</strong>: <code>5080</code></li>
+<li><strong>Username</strong>: <code>admin</code></li>
+<li><strong>Password</strong>: The password you set earlier.</li>
+</ul>
+</li>
+<li>Click <strong>Test</strong> and then <strong>Save</strong>.</li>
+</ul>
+<hr>
+<h2 id="4-configure-prowlarr">4. Configure Prowlarr<a href="#4-configure-prowlarr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Prowlarr manages the <strong>indexers</strong> that Radarr and Sonarr use to find and download content. Here’s how to configure Prowlarr:</p>
+<h3 id="a-access-prowlarr">a. Access Prowlarr<a href="#a-access-prowlarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:9696</code>.</li>
+</ul>
+<h3 id="b-set-up-authentication">b. Set Up Authentication<a href="#b-set-up-authentication" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>General</strong> -&gt; <strong>Authentication</strong>.</li>
+<li>Enable Authentication and create a <strong>username</strong> and <strong>password</strong>.</li>
+</ul>
+<h3 id="c-add-indexers">c. Add Indexers<a href="#c-add-indexers" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Indexers</strong> -&gt; <strong>Add Indexer</strong>.</li>
+<li>Choose an <strong>Indexer</strong> (e.g., Jackett, NZBHydra2, etc.), enter the <strong>base URL</strong> of the indexer, and click <strong>Test</strong> to make sure it’s working. Then, click <strong>Save</strong>.</li>
+</ul>
+<h3 id="d-add-applications-radarr-and-sonarr">d. Add Applications (Radarr and Sonarr)<a href="#d-add-applications-radarr-and-sonarr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Go to <strong>Settings</strong> -&gt; <strong>Apps</strong> -&gt; <strong>Add Application</strong>.</li>
+<li>Select <strong>Radarr</strong> and enter:
+<ul>
+<li>Prowlarr server URL: <code>http://prowlarr:9696</code></li>
+<li>Radarr server URL: <code>http://radarr:7878</code></li>
+<li><strong>API Key</strong>: Found in Radarr&rsquo;s settings.</li>
+<li>Click <strong>Test</strong> and then <strong>Save</strong>.</li>
+</ul>
+</li>
+<li>Do the same for <strong>Sonarr</strong>, entering:
+<ul>
+<li>Sonarr server URL: <code>http://sonarr:8989</code></li>
+<li>API Key: Found in Sonarr&rsquo;s settings.</li>
+<li>Click <strong>Test</strong> and then <strong>Save</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-configure-jellyfin">5. Configure Jellyfin<a href="#5-configure-jellyfin" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Jellyfin is your <strong>media server</strong> that will stream your movies and TV shows to various devices. Here&rsquo;s how to configure it:</p>
+<h3 id="a-access-jellyfin">a. Access Jellyfin<a href="#a-access-jellyfin" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:8096</code>.</li>
+<li>When accessing Jellyfin for the first time, a <strong>guided configuration</strong> will appear. Just follow the steps to complete the setup.</li>
+</ul>
+<h3 id="b-add-media-library">b. Add Media Library<a href="#b-add-media-library" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>During the setup process, you’ll be prompted to <strong>Add Media Library</strong>.</li>
+<li>Choose <strong>/data/movies/</strong> as the media folder for your movie library.</li>
+</ul>
+<hr>
+<h2 id="6-configure-jellyseerr">6. Configure Jellyseerr<a href="#6-configure-jellyseerr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Jellyseerr is a <strong>media request system</strong> that integrates with Jellyfin, Radarr, and Sonarr. Here’s how to set it up:</p>
+<h3 id="a-access-jellyseerr">a. Access Jellyseerr<a href="#a-access-jellyseerr" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:5055</code>.</li>
+<li>When accessing Jellyseerr for the first time, a <strong>guided configuration</strong> will guide you through the setup process. Follow the steps and provide the necessary details about your Radarr and Sonarr setups.</li>
+</ul>
+<h3 id="b-follow-the-jellyseerr-setup-documentation">b. Follow the Jellyseerr Setup Documentation<a href="#b-follow-the-jellyseerr-setup-documentation" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>For a more detailed setup, you can follow the Jellyseerr documentation, as Jellyseerr is a fork of Overseerr.</li>
+</ul>
+<p>With these steps completed, your self-hosted media stack is now configured and ready to automate media management, downloading, and streaming. You&rsquo;ll be able to search for movies and TV shows, automatically download them, and stream them to your devices — all while ensuring your privacy and security through the use of a VPN.</p>
+<h1 id="using-jellyseerr-to-request-media">Using Jellyseerr to Request Media<a href="#using-jellyseerr-to-request-media" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h3 id="a-access-jellyseerr-1">a. Access Jellyseerr<a href="#a-access-jellyseerr-1" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>Open a browser and go to <code>http://localhost:5055</code>.</li>
+</ul>
+<h3 id="b-request-a-movie-or-tv-show">b. Request a Movie or TV Show<a href="#b-request-a-movie-or-tv-show" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Once Jellyseerr is set up:</p>
+<ol>
+<li>On the <strong>main dashboard</strong>, you’ll see options to <strong>Search</strong> for a movie or TV show.</li>
+<li>Use the <strong>Search bar</strong> to find the title you want.</li>
+<li>Once you find your movie or TV show, click on it, and you&rsquo;ll see options to <strong>Request</strong> it.</li>
+<li>Select the quality profile you want, and click <strong>Request</strong>.</li>
+</ol>
+<h3 id="c-automated-download-process">c. Automated Download Process<a href="#c-automated-download-process" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>After you request a title, Jellyseerr sends the request to <strong>Radarr (for movies)</strong> or <strong>Sonarr (for TV shows)</strong>.</li>
+<li>Radarr or Sonarr will then handle the <strong>downloading and organizing</strong> of the requested media.</li>
+<li>You can check the progress of your request in the <strong>Activities</strong> section of Jellyseerr.</li>
+</ul>
+<h3 id="d-manage-requests">d. Manage Requests<a href="#d-manage-requests" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ul>
+<li>If you need to cancel or view the status of your requests, go to the <strong>Requests</strong> tab in Jellyseerr.</li>
+<li>Here, you can see which requests are <strong>queued</strong>, <strong>downloading</strong>, or <strong>completed</strong>.</li>
+</ul>
+<hr>
+<h1 id="streaming-with-jellyfin">Streaming with Jellyfin<a href="#streaming-with-jellyfin" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>After setting up your media stack and configuring all the components, <strong>Jellyfin</strong> serves as your personal media server where you can enjoy all your content.</p>
+<h3 id="using-jellyfin">Using Jellyfin<a href="#using-jellyfin" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ol>
+<li>Open Jellyfin at <code>http://localhost:8096</code>.</li>
+<li>You can add your movies and TV shows by selecting the appropriate folders (e.g., <code>/data/movies/</code> for movies).</li>
+<li>Once your libraries are set up, you can start streaming your content directly from the Jellyfin web interface, or use any supported device, such as smart TVs, mobile apps, or streaming boxes.</li>
+</ol>
+<p>Jellyfin is fully customizable and lets you organize, stream, and share your media on your terms—without relying on third-party services.</p>
+<hr>
+<p>By combining tools like Radarr, Sonarr, Jellyseerr, and Jellyfin, you&rsquo;ve built a robust <strong>self-hosted media stack</strong> that lets you automatically download, organize, request, and stream your media content. Enjoy your personal, on-demand streaming service!</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="//localhost:1313/posts/heaps-in-go/" class="button inline next">
+        Using Heaps in Golang
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer>
+    <center><p>&copy;2024 theinit01. All Rights Reserved.</p></center>
+</footer>
+  
+</div>
+
+</body>
+</html>
