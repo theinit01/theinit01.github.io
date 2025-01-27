@@ -2,21 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Terminal</title>
-    <link>//localhost:1313/posts/</link>
+    <link>//localhost:6275/posts/</link>
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:6275/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unleash Your Inner Hacker: Dive into the Exciting World of Capture the Flag (CTF)</title>
+      <link>//localhost:6275/posts/ctf/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:6275/posts/ctf/</guid>
+      <description>This blog post explains what a ctf is and why is it useful for a developer or a hacker</description>
+      <content>&lt;p&gt;Have you ever thought about what it’s like to be a hacker? To crack codes, solve puzzles, and tackle digital challenges? If you’re curious about cybersecurity and want to test your skills, it’s time to join the fun of Capture the Flag (CTF)!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is CTF?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;CTF stands for Capture The Flag. In the world of cybersecurity, it’s a thrilling competition that turns learning into an adventure. Imagine this: an online game where you and your team go on a quest filled with challenges. Each challenge tests your creativity and problem-solving skills. You might crack codes, solve tricky riddles, or learn how computers and networks work.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why Join a CTF?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The great thing about CTFs is that anyone can join! You don’t need to be an expert or a coding whiz to participate. CTFs are designed to welcome everyone, from newcomers to experienced tech fans. Whether you’re just starting or already know a bit, there’s always something new to learn.&lt;/p&gt;
+&lt;p&gt;Think of CTFs as a fun way to learn while playing a game. You’ll gain important knowledge about cybersecurity, improve your problem-solving skills, and understand technology better. You’ll also explore key topics like networking, cryptography, and system basics—all while having a blast!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What’s in Store for You?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Picture working alongside friends, tackling challenges together, and celebrating your wins. Our Developer Student Club (DSC) invites you to our upcoming CTF event, where excitement awaits! Here’s what you can expect:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Fun Challenges:&lt;/strong&gt; Work on real-world problems similar to what cybersecurity experts deal with. Each challenge is designed to stretch your skills and help you learn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Help Along the Way:&lt;/strong&gt; If you’re new, don’t worry! We’ll support you throughout the event. You’ll get three hints for each challenge, and using search engines like Google is totally okay. This is all about learning!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Meet New People:&lt;/strong&gt; Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Ready to Get Started?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Are you ready to unleash your inner tech detective and dive into the exciting world of Capture the Flag? Join us at the DSC CTF, where you’ll gain new skills, create great memories, and enjoy an adventure like no other!&lt;/p&gt;
+&lt;p&gt;Don’t miss this chance to explore the world of cybersecurity, learn new things, and have a ton of fun. Gather your friends, sharpen your minds, and sign up today! Let the games begin!&lt;/p&gt;
+&lt;p&gt;Together, let’s embark on this unforgettable adventure and discover the hacker inside you!&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media</title>
-      <link>//localhost:1313/posts/media-stack/</link>
+      <link>//localhost:6275/posts/media-stack/</link>
       <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/posts/media-stack/</guid>
+      <guid>//localhost:6275/posts/media-stack/</guid>
       <description>This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server.</description>
       <content>&lt;p&gt;A self-hosted media stack is a powerful setup that allows you to manage, stream, and automate your media content. It includes a variety of applications designed to work together seamlessly for downloading, organizing, and streaming movies and TV shows. This guide explains what each component of the stack does and how they interact with each other.&lt;/p&gt;
 &lt;p&gt;This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/Untitled-2024-10-04-1634.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;![[Untitled-2024-10-04-1634.png]]&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s first see what each component does:&lt;/p&gt;
 &lt;h3 id=&#34;1-jellyfin&#34;&gt;1. &lt;strong&gt;Jellyfin&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; is an open-source media server that streams your downloaded movies and TV shows to any device. It allows you to organize and view your media in a user-friendly interface.&lt;/p&gt;
@@ -380,13 +413,13 @@
     
     <item>
       <title>Using Heaps in Golang</title>
-      <link>//localhost:1313/posts/heaps-in-go/</link>
+      <link>//localhost:6275/posts/heaps-in-go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/posts/heaps-in-go/</guid>
+      <guid>//localhost:6275/posts/heaps-in-go/</guid>
       <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
-&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:1313/images/1mghTRv.png&#34;&gt;
+&lt;p&gt;![[1mghTRv.png]]
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;
