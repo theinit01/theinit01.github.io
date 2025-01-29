@@ -2,19 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terminal</title>
-    <link>//localhost:6275/</link>
+    <link>//localhost:14213/</link>
     <description>Recent content on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:6275/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:14213/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unleash Your Inner Hacker: Dive into the Exciting World of Capture the Flag (CTF)</title>
-      <link>//localhost:6275/posts/ctf/</link>
+      <link>//localhost:14213/posts/ctf/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/posts/ctf/</guid>
+      <guid>//localhost:14213/posts/ctf/</guid>
       <description>This blog post explains what a ctf is and why is it useful for a developer or a hacker</description>
       <content>&lt;p&gt;Have you ever thought about what it’s like to be a hacker? To crack codes, solve puzzles, and tackle digital challenges? If you’re curious about cybersecurity and want to test your skills, it’s time to join the fun of Capture the Flag (CTF)!&lt;/p&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/ct.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What is CTF?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;CTF stands for Capture The Flag. In the world of cybersecurity, it’s a thrilling competition that turns learning into an adventure. Imagine this: an online game where you and your team go on a quest filled with challenges. Each challenge tests your creativity and problem-solving skills. You might crack codes, solve tricky riddles, or learn how computers and networks work.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why Join a CTF?&lt;/strong&gt;&lt;/p&gt;
@@ -30,7 +31,8 @@
 &lt;p&gt;&lt;strong&gt;Help Along the Way:&lt;/strong&gt; If you’re new, don’t worry! We’ll support you throughout the event. You’ll get three hints for each challenge, and using search engines like Google is totally okay. This is all about learning!&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Meet New People:&lt;/strong&gt; Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Meet New People:&lt;/strong&gt; Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!
+!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/team.png&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Ready to Get Started?&lt;/strong&gt;&lt;/p&gt;
@@ -42,14 +44,14 @@
     
     <item>
       <title>Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media</title>
-      <link>//localhost:6275/posts/media-stack/</link>
+      <link>//localhost:14213/posts/media-stack/</link>
       <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/posts/media-stack/</guid>
+      <guid>//localhost:14213/posts/media-stack/</guid>
       <description>This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server.</description>
       <content>&lt;p&gt;A self-hosted media stack is a powerful setup that allows you to manage, stream, and automate your media content. It includes a variety of applications designed to work together seamlessly for downloading, organizing, and streaming movies and TV shows. This guide explains what each component of the stack does and how they interact with each other.&lt;/p&gt;
 &lt;p&gt;This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.&lt;/p&gt;
-&lt;p&gt;![[Untitled-2024-10-04-1634.png]]&lt;/p&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/Untitled-2024-10-04-1634.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s first see what each component does:&lt;/p&gt;
 &lt;h3 id=&#34;1-jellyfin&#34;&gt;1. &lt;strong&gt;Jellyfin&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; is an open-source media server that streams your downloaded movies and TV shows to any device. It allows you to organize and view your media in a user-friendly interface.&lt;/p&gt;
@@ -413,13 +415,13 @@
     
     <item>
       <title>Using Heaps in Golang</title>
-      <link>//localhost:6275/posts/heaps-in-go/</link>
+      <link>//localhost:14213/posts/heaps-in-go/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/posts/heaps-in-go/</guid>
+      <guid>//localhost:14213/posts/heaps-in-go/</guid>
       <description>This blog post explains how to use &lt;strong&gt;heaps&lt;/strong&gt; in Go (Golang) with the &lt;code&gt;container/heap&lt;/code&gt; package. It demonstrates how to implement a custom heap by defining a type that satisfies the &lt;code&gt;heap.Interface&lt;/code&gt;, which requires methods like &lt;code&gt;Len()&lt;/code&gt;, &lt;code&gt;Less()&lt;/code&gt;, &lt;code&gt;Swap()&lt;/code&gt;, &lt;code&gt;Push()&lt;/code&gt;, and &lt;code&gt;Pop()&lt;/code&gt;.</description>
       <content>&lt;h1 id=&#34;using-heaps-in-go-golang&#34;&gt;Using Heaps in Go (Golang)&lt;/h1&gt;
-&lt;p&gt;![[1mghTRv.png]]
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/1mghTRv.png&#34;&gt;
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the &lt;strong&gt;heap property&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The value of each parent node is less than or equal to the values of its children.&lt;/li&gt;
@@ -550,10 +552,10 @@ Heaps (Priority Queues) are often used for implementing priority queues and effi
     
     <item>
       <title>About</title>
-      <link>//localhost:6275/about/</link>
+      <link>//localhost:14213/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/about/</guid>
+      <guid>//localhost:14213/about/</guid>
       <description>&lt;h1 id=&#34;about-me&#34;&gt;About Me&lt;/h1&gt;
 &lt;p&gt;Welcome to my corner of the internet! 👋 I&amp;rsquo;m Tushar Singh, a tech enthusiast who loves exploring the intersection of creativity and technology. 🚀&lt;/p&gt;
 &lt;h2 id=&#34;who-am-i&#34;&gt;Who Am I?&lt;/h2&gt;
@@ -608,10 +610,10 @@ Heaps (Priority Queues) are often used for implementing priority queues and effi
     
     <item>
       <title>Showcase</title>
-      <link>//localhost:6275/showcase/</link>
+      <link>//localhost:14213/showcase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/showcase/</guid>
+      <guid>//localhost:14213/showcase/</guid>
       <description>&lt;h1 id=&#34;not-added-yet-&#34;&gt;Not added yet :)&lt;/h1&gt;</description>
       <content>&lt;h1 id=&#34;not-added-yet-&#34;&gt;Not added yet :)&lt;/h1&gt;
 </content>

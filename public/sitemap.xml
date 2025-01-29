@@ -2,55 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:6275/tags/ctf/</loc>
+    <loc>//localhost:14213/tags/ctf/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/cybersecurity/</loc>
+    <loc>//localhost:14213/tags/cybersecurity/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/data/</loc>
+    <loc>//localhost:14213/tags/data/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/hacking/</loc>
+    <loc>//localhost:14213/tags/hacking/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/posts/</loc>
+    <loc>//localhost:14213/posts/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/structures/</loc>
+    <loc>//localhost:14213/tags/structures/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/</loc>
+    <loc>//localhost:14213/tags/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/</loc>
+    <loc>//localhost:14213/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/posts/ctf/</loc>
+    <loc>//localhost:14213/posts/ctf/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/automation/</loc>
+    <loc>//localhost:14213/tags/automation/</loc>
     <lastmod>2024-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/media/</loc>
+    <loc>//localhost:14213/tags/media/</loc>
     <lastmod>2024-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/posts/media-stack/</loc>
+    <loc>//localhost:14213/posts/media-stack/</loc>
     <lastmod>2024-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/data-structures/</loc>
+    <loc>//localhost:14213/tags/data-structures/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/tags/golang/</loc>
+    <loc>//localhost:14213/tags/golang/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/posts/heaps-in-go/</loc>
+    <loc>//localhost:14213/posts/heaps-in-go/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:6275/about/</loc>
+    <loc>//localhost:14213/about/</loc>
   </url><url>
-    <loc>//localhost:6275/categories/</loc>
+    <loc>//localhost:14213/categories/</loc>
   </url><url>
-    <loc>//localhost:6275/showcase/</loc>
+    <loc>//localhost:14213/showcase/</loc>
   </url>
 </urlset>

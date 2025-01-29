@@ -2,97 +2,97 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Terminal</title>
-    <link>//localhost:6275/tags/</link>
+    <link>//localhost:14213/tags/</link>
     <description>Recent content in Tags on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:6275/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:14213/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ctf</title>
-      <link>//localhost:6275/tags/ctf/</link>
+      <link>//localhost:14213/tags/ctf/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/ctf/</guid>
+      <guid>//localhost:14213/tags/ctf/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Cybersecurity</title>
-      <link>//localhost:6275/tags/cybersecurity/</link>
+      <link>//localhost:14213/tags/cybersecurity/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/cybersecurity/</guid>
+      <guid>//localhost:14213/tags/cybersecurity/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Data</title>
-      <link>//localhost:6275/tags/data/</link>
+      <link>//localhost:14213/tags/data/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/data/</guid>
+      <guid>//localhost:14213/tags/data/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Hacking</title>
-      <link>//localhost:6275/tags/hacking/</link>
+      <link>//localhost:14213/tags/hacking/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/hacking/</guid>
+      <guid>//localhost:14213/tags/hacking/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Structures</title>
-      <link>//localhost:6275/tags/structures/</link>
+      <link>//localhost:14213/tags/structures/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/structures/</guid>
+      <guid>//localhost:14213/tags/structures/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Automation</title>
-      <link>//localhost:6275/tags/automation/</link>
+      <link>//localhost:14213/tags/automation/</link>
       <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/automation/</guid>
+      <guid>//localhost:14213/tags/automation/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Media</title>
-      <link>//localhost:6275/tags/media/</link>
+      <link>//localhost:14213/tags/media/</link>
       <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/media/</guid>
+      <guid>//localhost:14213/tags/media/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Data Structures</title>
-      <link>//localhost:6275/tags/data-structures/</link>
+      <link>//localhost:14213/tags/data-structures/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/data-structures/</guid>
+      <guid>//localhost:14213/tags/data-structures/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>//localhost:6275/tags/golang/</link>
+      <link>//localhost:14213/tags/golang/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/tags/golang/</guid>
+      <guid>//localhost:14213/tags/golang/</guid>
       <description></description>
       <content></content>
     </item>

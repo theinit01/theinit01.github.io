@@ -2,19 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data on Terminal</title>
-    <link>//localhost:6275/tags/data/</link>
+    <link>//localhost:14213/tags/data/</link>
     <description>Recent content in Data on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:6275/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:14213/tags/data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unleash Your Inner Hacker: Dive into the Exciting World of Capture the Flag (CTF)</title>
-      <link>//localhost:6275/posts/ctf/</link>
+      <link>//localhost:14213/posts/ctf/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/posts/ctf/</guid>
+      <guid>//localhost:14213/posts/ctf/</guid>
       <description>This blog post explains what a ctf is and why is it useful for a developer or a hacker</description>
       <content>&lt;p&gt;Have you ever thought about what it’s like to be a hacker? To crack codes, solve puzzles, and tackle digital challenges? If you’re curious about cybersecurity and want to test your skills, it’s time to join the fun of Capture the Flag (CTF)!&lt;/p&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/ct.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What is CTF?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;CTF stands for Capture The Flag. In the world of cybersecurity, it’s a thrilling competition that turns learning into an adventure. Imagine this: an online game where you and your team go on a quest filled with challenges. Each challenge tests your creativity and problem-solving skills. You might crack codes, solve tricky riddles, or learn how computers and networks work.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why Join a CTF?&lt;/strong&gt;&lt;/p&gt;
@@ -30,7 +31,8 @@
 &lt;p&gt;&lt;strong&gt;Help Along the Way:&lt;/strong&gt; If you’re new, don’t worry! We’ll support you throughout the event. You’ll get three hints for each challenge, and using search engines like Google is totally okay. This is all about learning!&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Meet New People:&lt;/strong&gt; Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Meet New People:&lt;/strong&gt; Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!
+!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/team.png&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Ready to Get Started?&lt;/strong&gt;&lt;/p&gt;

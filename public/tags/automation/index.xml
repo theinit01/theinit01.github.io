@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation on Terminal</title>
-    <link>//localhost:6275/tags/automation/</link>
+    <link>//localhost:14213/tags/automation/</link>
     <description>Recent content in Automation on Terminal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:6275/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:14213/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Self-Hosted Media Stack: Stream, Manage, and Automate Downloading Media</title>
-      <link>//localhost:6275/posts/media-stack/</link>
+      <link>//localhost:14213/posts/media-stack/</link>
       <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:6275/posts/media-stack/</guid>
+      <guid>//localhost:14213/posts/media-stack/</guid>
       <description>This article provides a detailed guide on setting up a self-hosted media stack using Docker containers, designed to automate the downloading, organizing, and streaming of movies and TV shows. It covers key components like Jellyfin for media streaming, Radarr and Sonarr for automatic downloading and organization, qBittorrent for torrenting, and Jellyseerr for managing media requests. The guide explains how to configure each component and how they work together to create a seamless, privacy-focused media management system. The setup allows users to easily request and stream media content from their personal server.</description>
       <content>&lt;p&gt;A self-hosted media stack is a powerful setup that allows you to manage, stream, and automate your media content. It includes a variety of applications designed to work together seamlessly for downloading, organizing, and streaming movies and TV shows. This guide explains what each component of the stack does and how they interact with each other.&lt;/p&gt;
 &lt;p&gt;This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.&lt;/p&gt;
-&lt;p&gt;![[Untitled-2024-10-04-1634.png]]&lt;/p&gt;
+&lt;p&gt;!&lt;img alt=&#34;Image Description&#34; src=&#34;//localhost:14213/images/Untitled-2024-10-04-1634.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s first see what each component does:&lt;/p&gt;
 &lt;h3 id=&#34;1-jellyfin&#34;&gt;1. &lt;strong&gt;Jellyfin&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; is an open-source media server that streams your downloaded movies and TV shows to any device. It allows you to organize and view your media in a user-friendly interface.&lt;/p&gt;
