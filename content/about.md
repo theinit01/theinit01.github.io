@@ -1,3 +1,4 @@
+
 ---
 title: "About"
 layout: "page"
@@ -5,33 +6,40 @@ layout: "page"
 
 # About Me
 
-Welcome to my corner of the internet! 👋 I'm Tushar Singh, a tech enthusiast who loves exploring the intersection of creativity and technology. 🚀 
+Hey there! 👋 I’m **Tushar Singh**, a DevOps Engineer and tech tinkerer who loves designing **scalable, secure, and efficient systems**.  
+By day, I work on production-grade infrastructure, building automated, reliable pipelines and clusters. By night, I experiment in my **homelab**, pushing the boundaries of what self-hosted technology can do.
 
 ## Who Am I?
 
-By day, I'm a [your role or expertise], and by night, I dive into projects that fuel my curiosity. With a knack for problem-solving and a passion for innovation, I bring a unique perspective to the world of tech.
+I thrive at the intersection of **engineering, automation, and experimentation**. From **air-gapped Kubernetes clusters** and **distributed data pipelines** at work to bare-metal setups in my homelab, I enjoy designing systems that are both **robust** and **fun to operate**.  
+Problem-solving, learning by doing, and sharing knowledge are at the heart of everything I do.
 
 ## What I Do
 
-- **Problem Solving**: I'm a problem solver with a thirst for knowledge and a love for learning. 🧠
-- **Writing & Sharing**: I believe in the power of storytelling and knowledge sharing, which is why I blog about my journey, insights, and learnings.
-- **Tech Enthusiast**: Currently exploring **Go**, **React Native**, and systems that balance **security** with **user experience**.
+- **DevOps & Infrastructure** — Docker, Kubernetes, Jenkins, Argo CD, and CI/CD pipelines for scalable, secure production environments.  
+- **Data Systems** — Orchestrating workflows with Hadoop, Spark, and Airflow to power analytics and AI workloads.  
+- **Homelab Projects** — Running everything **bare metal**, including but not limited too:  
+  - **ARR Stack Media** for self-hosted entertainment  
+  - **Frigate NVR** for smart home surveillance  
+  - **n8n** for automating workflows  
+  - **WireGuard** for secure networking  
+- **Automation & Problem Solving** — Building pipelines, monitoring systems, and infrastructure that “just work” while minimizing manual intervention.  
 
 ## What Excites Me?
 
-- Creative applications of **AI** and **technology** to make life easier and learning fun.
-- Building tools that empower people, whether it's kids or professionals.
-- The never-ending pursuit of learning and sharing along the way.
+- Automating repetitive tasks and building **self-healing systems**.  
+- Exploring the power of **bare-metal homelabs** to test real-world scenarios.  
+- Learning and sharing new tools, technologies, and techniques with the community.  
+- Merging **creativity with engineering**, whether through infrastructure or side projects.
 
-## Fun Facts
+## Beyond Work
 
-- I love working on projects that blend **art and logic**. 🎨 ➕ 💻
-- I have a knack for tackling problems that challenge conventional thinking.
-- ⚡I forget to fork
+When I’m not managing clusters or writing YAML (endless YAML 😅), you’ll find me in my homelab experimenting with things.  
+I love building things that **teach me something new** and inspire others to tinker too.  
 
 ## Let’s Connect
 
-Got an idea to share, a project to collaborate on, or just want to say hi? Reach out to me at tushar3145@gmail.com or find me on [LinkedIn](https://linkedin.com/in/theinit01).
+Have an idea, project, or just want to geek out about tech?  
+Reach out at **tushar3145@gmail.com** or connect with me on [LinkedIn](https://linkedin.com/in/theinit01).  
 
-Thanks for stopping by—stay curious and keep exploring! 🌟
-
+Thanks for stopping by — stay curious and keep building! ⚡🧠
