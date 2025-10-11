@@ -12,7 +12,7 @@ tags:
 ---
 Have you ever thought about what it’s like to be a hacker? To crack codes, solve puzzles, and tackle digital challenges? If you’re curious about cybersecurity and want to test your skills, it’s time to join the fun of Capture the Flag (CTF)!
 
-!![Image Description](/images/ct.png)
+![Image Description](/images/ct.png)
 
 **What is CTF?**
 
@@ -33,7 +33,7 @@ Picture working alongside friends, tackling challenges together, and celebrating
 - **Help Along the Way:** If you’re new, don’t worry! We’ll support you throughout the event. You’ll get three hints for each challenge, and using search engines like Google is totally okay. This is all about learning!
 
 - **Meet New People:** Connect with other tech enthusiasts, make new friends, and build a network of people who share your interests. You never know what great ideas might come from these connections!
-!![Image Description](/images/team.png)
+![Image Description](/images/team.png)
 
 **Ready to Get Started?**
 

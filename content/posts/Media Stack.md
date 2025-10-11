@@ -12,7 +12,7 @@ A self-hosted media stack is a powerful setup that allows you to manage, stream,
 
 This guide aims to achieve the below setup using Docker containers. A Docker compose file is used to spin up the containers and create a network for them to interact with each other.
 
-!![Image Description](/images/Untitled-2024-10-04-1634.png)
+![Image Description](/images/Untitled-2024-10-04-1634.png)
 
 Let's first see what each component does:
 ### 1. **Jellyfin**

@@ -9,7 +9,7 @@ tags:
 ---
 
 # Using Heaps in Go (Golang)
-!![Image Description](/images/1mghTRv.png)
+![Image Description](/images/1mghTRv.png)
 Heaps (Priority Queues) are often used for implementing priority queues and efficient sorting algorithms. A heap is a special binary tree structure that satisfies the **heap property**:
 - **Min-Heap**: The value of each parent node is less than or equal to the values of its children.
 - **Max-Heap**: The value of each parent node is greater than or equal to the values of its children.
