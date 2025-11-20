@@ -17,6 +17,8 @@ I have already used kubeadm, so I wanted to try k3s this time. It is super light
 
 Sure, I could have just run everything on plain Docker, but where is the fun in that if you can go full Kubernetes in your living room?
 
+![k9s](/images/homelab.jpg)
+
 I used Cilium CNI coz I had already used Flannel and wanted to try something new. Plus I keep hearing awesome things about Cilium advanced features like Hubble observability, the service mesh, and now that ingress nginx is heading toward deprecation I think it is the perfect time to embrace the Gateway API. Cilium already provides a Gateway API implementation along with an ingress controller so why not experiment and learn something cool.
 
 I also wanted to use network storage so I went with Longhorn as the storage provisioner. I have used Rook Ceph earlier and really did not want to deal with raw devices no partitions or formatted filesystems or raw partitions again like Rook requires. Longhorn installation is straightforward and way easier for homelab use cases plus it supports RWX which I needed for Jellyfin media storage :)
