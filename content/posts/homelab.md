@@ -22,7 +22,8 @@ I used Cilium CNI coz I had already used Flannel and wanted to try something new
 I also wanted to use network storage so I went with Longhorn as the storage provisioner. I have used Rook Ceph earlier and really did not want to deal with raw devices no partitions or formatted filesystems or raw partitions again like Rook requires. Longhorn installation is straightforward and way easier for homelab use cases plus it supports RWX which I needed for Jellyfin media storage :)
 
 My initial plan was to expose services in the cluster through a free cloud instance like Oracle Always Free using WireGuard and iptables. But then I tried Cloudflare Tunnels and instantly fell in love so that plan is on hold for now :)
-<hr>
+
+---
 
 ## K3s installation
 
