@@ -2,7 +2,7 @@
 title: "Finally got a homelab!"
 date: 2025-11-20
 draft: false
-summary: In this post, I walk through building my homelab setup powered by K3s, Cilium, and Longhorn running on two tiny Lenovo ThinkCentre M920q nodes. I share why I chose K3s for a lightweight HA capable Kubernetes cluster, why Cilium felt exciting to try, and how Longhorn made network storage super easy with RWX support for Jellyfin. I also talk about experimenting with Cloudflare Tunnels for secure external access and outline future plans like adding another node, finishing kube VIP, tuning Authentik, and improving GitOps and observability. Homelabs are never really finished and that is what makes them fun.
+summary: "In this post, I walk through building my homelab setup powered by K3s, Cilium, and Longhorn running on two tiny Lenovo ThinkCentre M920q nodes. I share why I chose K3s for a lightweight HA capable Kubernetes cluster, why Cilium felt exciting to try, and how Longhorn made network storage super easy with RWX support for Jellyfin. I also talk about experimenting with Cloudflare Tunnels for secure external access and outline future plans like adding another node, finishing kube VIP, tuning Authentik, and improving GitOps and observability. Homelabs are never really finished and that is what makes them fun."
 tags:
   - homelab
   - kubernetes
