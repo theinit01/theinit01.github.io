@@ -19,7 +19,7 @@ Problem-solving, learning by doing, and sharing knowledge are at the heart of ev
 - **DevOps & Infrastructure** — Docker, Kubernetes, Jenkins, Argo CD, and CI/CD pipelines for scalable, secure production environments.  
 - **Data Systems** — Orchestrating workflows with Hadoop, Spark, and Airflow to power analytics and AI workloads.  
 - **Homelab Projects** — Running everything **bare metal**, including but not limited too:  
-  - **ARR Stack Media** for self-hosted entertainment  
+  - **ARR Stack Media** for self-hosted entertainment :) 
   - **Frigate NVR** for smart home surveillance  
   - **n8n** for automating workflows  
   - **WireGuard** for secure networking  
