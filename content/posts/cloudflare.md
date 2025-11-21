@@ -1,6 +1,6 @@
 ---
 title: "Expose k8s services via Cloudflare Tunnels"
-date: 2025-11-22
+date: 2025-11-21
 draft: false
 summary: "In this post, I explain how I exposed Kubernetes services from my homelab using Cloudflare Tunnels to bypass CGNAT without port forwarding, VPNs, or a public IP. Instead of using a Cloud VPS with WireGuard, I opted for Cloudflare’s cloudflared daemon running as a DaemonSet inside the cluster for high availability. The blog walks through domain setup using a free Digiplat domain, connecting it to Cloudflare, creating a tunnel, deploying cloudflared on Kubernetes, and publishing internal services like Argo CD to the internet securely. Simple, secure, and zero headache. Staying tuned for securing routes with Cloudflare Access next."
 tags:
